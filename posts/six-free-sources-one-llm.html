@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Six free data sources, one LLM, and 3,872 AI companies — qrious</title>
+  <meta name="description" content="How six free public data sources and one LLM classification pass built a radar of 3,872 recently funded AI companies — 551 with live AI roles, 362 with an Indian entity.">
+
+  <!-- TODO: swap og:url values to https://qriousman.dev/ after domain purchase -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="qrious">
+  <meta property="og:title" content="Six free data sources, one LLM, and 3,872 AI companies">
+  <meta property="og:description" content="Zero paid APIs: the Wayback Machine, SEC Form D, and one Sonnet classification pass built a radar of recently funded AI companies.">
+  <meta property="og:url" content="https://ashishjain608.github.io/posts/six-free-sources-one-llm.html">
+  <meta property="article:published_time" content="2026-07-11">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Six free data sources, one LLM, and 3,872 AI companies">
+  <meta name="twitter:description" content="Zero paid APIs: the Wayback Machine, SEC Form D, and one Sonnet classification pass built a radar of recently funded AI companies.">
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">skip to content</a>
+
+  <header class="site-head">
+    <nav aria-label="Primary">
+      <a class="wordmark" href="/">qrious</a>
+      <ul>
+        <li><a href="/#work">work</a></li>
+        <li><a href="/#writing">writing</a></li>
+        <li><a href="/#contact">contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <article class="post">
+      <a class="back-link" href="/">&larr; index</a>
+      <h1>Six free data sources, one LLM, and 3,872 AI companies</h1>
+      <p class="post-meta"><time datetime="2026-07-11">2026-07-11</time> &middot; Ashish Jain</p>
+
+      <p>I wanted a radar of recently funded AI companies that were actually hiring, so I built one. The result tracks 3,872 AI companies funded between 2023 and 2026: 551 of them have live AI roles open on their job boards right now, and 362 have a registered legal entity in India. It started from roughly 19,700 funding events pulled from six free sources. Total pipeline cost: zero paid APIs, zero data subscriptions. The only money spent was on the LLM calls that decided which companies count as AI.</p>
+
+      <h2>Why build this</h2>
+
+      <p>If you&rsquo;re job-hunting in AI, the companies you most want to find are the ones that raised money recently and are hiring now. That intersection is weirdly hard to see. Funding databases like Crunchbase and PitchBook are paywalled. Job boards don&rsquo;t tell you who just closed a Series B. And curated &ldquo;AI 50&rdquo; lists cover the famous companies you already know about.</p>
+
+      <p>The curated lists got me to 1,147 companies. The question was whether free public data could get me meaningfully further. It got me to 3,872, and the India signal went from 22 companies to 362.</p>
+
+      <h2>Discovery: funding data is lying around if you know where to look</h2>
+
+      <p>No single free source lists funded startups, but six partial ones overlap into something useful.</p>
+
+      <p>The best one required a detour. FinSMEs publishes short posts on nearly every funding round, but the site sits behind Cloudflare and blocks scrapers cold. The Wayback Machine, however, is not blocked, and its CDX API will happily list every FinSMEs URL it has ever archived. Better still, FinSMEs headlines are the data: the URL slug is literally <code>company-raises-usd-25m-series-a</code>. One CDX query per year plus a regex over the slugs yields about 15,000 funding events without rendering a single page.</p>
+
+      <p>The second workhorse is the SEC. Every US private raise files a Form D, and the SEC publishes quarterly bulk zips of the structured data. Join the offerings table to the issuers table, keep the tech industry groups, and you get about 11,000 filings with real dollar amounts and dates. This is regulatory-grade data, free, and almost nobody uses it.</p>
+
+      <p>The rest fill gaps: TechCrunch&rsquo;s venture category through its open wp-json API (about 3,500 posts with rich excerpts), StartupTalky&rsquo;s yearly Indian funding tables (about 1,800 deals the US sources miss), topstartups.io&rsquo;s server-rendered cards (about 450 companies with rounds and investors), and the CB Insights unicorn list via a community-maintained GitHub CSV (about 80 unicorns minted since 2023).</p>
+
+      <p>Each source caches its raw output, and merging by normalized company name produced ~19,700 unique companies. One problem: most of them aren&rsquo;t AI companies. Form D covers all of US tech. FinSMEs covers all sectors, worldwide.</p>
+
+      <h2>Classification: the model choice was load-bearing</h2>
+
+      <p>Separating AI from noise sounds like a keyword problem until you look at the data. For most companies the context is a name, maybe a round, maybe an amount. A famous lab with &ldquo;AI&rdquo; in its description is easy. A row like &ldquo;Hakimo | $10M&rdquo; matches no keyword at all.</p>
+
+      <p>So the filter is an LLM that already knows these companies. Batches of about 70 names with their thin context go to <code>claude -p --model sonnet</code>, which returns a JSON map tagging each as frontier, ai-native, ai-adopter, not-ai, or unknown. Not-ai and unknown get dropped.</p>
+
+      <p>The interesting lesson: which model you pick isn&rsquo;t a cost knob here, it&rsquo;s a correctness knob. Haiku failed my acceptance test. It tagged Hakimo, the company I work at and my canary for &ldquo;does this pipeline know obscure startups&rdquo;, as unknown, which would have silently dropped it from the dataset. Opus classified fine but is overkill for a labeling task. Sonnet was the sweet spot: cheap enough to run over 19,700 companies, knowledgeable enough to recognize a $10M security startup. When your classifier&rsquo;s whole value is the model&rsquo;s recall of named entities, benchmark that recall on companies you personally know before trusting the output.</p>
+
+      <p>Operationally it&rsquo;s boring in the good way. Five workers, three retries per batch on parse failures (past five workers you hit rate limits and the failures spike), and an incremental cache flushed after every batch. Interrupt it whenever; a re-run only classifies names it hasn&rsquo;t seen. The first full pass took about an hour and a half. Roughly 4,400 companies came back AI, 9,300 not-ai, and 5,400 unknown.</p>
+
+      <p>That classification pass was the only LLM spend in the entire pipeline.</p>
+
+      <h2>Enrichment: from &ldquo;funded&rdquo; to &ldquo;hiring, near you&rdquo;</h2>
+
+      <p>A funded company is a lead. A funded company with open AI roles is an opportunity. Greenhouse, Lever, and Ashby all expose public JSON APIs for their job boards, no auth required, so the pipeline probes each company in three steps: an exact lookup in community-scraped slug dumps of ~15,000 known boards, then guessed slugs from the domain and name, then sniffing the company&rsquo;s careers page for an embedded ATS link. A title regex over the live postings counts AI roles. That surfaced 551 companies hiring for AI right now.</p>
+
+      <p>The India signal comes from an unexpectedly good source: India&rsquo;s Ministry of Corporate Affairs publishes its company register on data.gov.in, including a category for &ldquo;subsidiary of company incorporated outside India&rdquo;. All 24,102 such records, stem-matched against company names, flag foreign startups with an Indian arm. Hakimo matches HAKIMO AI INDIA PRIVATE LIMITED, incorporated in Karnataka. No job board would have told you that.</p>
+
+      <h2>What broke</h2>
+
+      <p>Two war stories from the MCA pull, both dumber than any architecture problem.</p>
+
+      <p>First: data.gov.in silently hangs on the default Python urllib User-Agent. Not a 403, not an error, just a connection that never returns. The same URL worked instantly in curl, which sends its own UA. I lost hours comparing request paths before trying the one header. The fix is a single line: <code>User-Agent: Mozilla/5.0</code>.</p>
+
+      <p>Second: data.gov.in ships a shared sample API key in its docs, and it works, which is the trap. It caps at about 10 rows per request, meaning ~2,400 throttled requests for the full register. A free personal key takes two minutes to create and allows 1,000 rows per request: all 24,102 records in about 24 requests, roughly 30 seconds. The script also flushes its cache to disk after every request, because I stopped trusting this API to stay up mid-pull.</p>
+
+      <h2>Honest limits, and what&rsquo;s next</h2>
+
+      <p>The hiring signal only sees companies on the big three ATS platforms. A company hiring exclusively on Naukri, LinkedIn, or a custom careers page shows zero roles, and absence of a probe hit is not absence of hiring. The canonical example is Hakimo itself: it&rsquo;s in the dataset with its funding and India flags, and shows 0 open roles while actively hiring. That irony is the roadmap. The next phase layers in job-aggregator APIs (Adzuna India has a free tier at 250 calls a day) to catch the Naukri-only hirers.</p>
+
+      <p>Other caveats: amounts parsed from news slugs are best-effort regex work, so treat them as approximate. And 5,400 companies came back &ldquo;unknown&rdquo; from classification and were dropped; some are real AI companies that a second pass with richer per-company context would recover.</p>
+
+      <h2>Try it</h2>
+
+      <p>The radar is live at <a href="https://ashishjain608.github.io/unicorn-radar-site/">ashishjain608.github.io/unicorn-radar-site</a>, default-sorted by what a job-seeker cares about: live AI roles first, then funding freshness. The code will be open-sourced soon.</p>
+
+      <p class="post-foot"><a class="back-link" href="/">&larr; back to index</a></p>
+    </article>
+  </main>
+
+  <footer class="site-foot">
+    <p>qriousman &mdash; Ashish Jain &middot; Bangalore &middot; 2026</p>
+  </footer>
+
+  <script>
+    (function () {
+      var head = document.querySelector('.site-head'), prev = 0;
+      addEventListener('scroll', function () {
+        var y = window.scrollY;
+        head.classList.toggle('is-hidden', y > prev && y > 96);
+        prev = y;
+      }, { passive: true });
+    })();
+  </script>
+</body>
+</html>
