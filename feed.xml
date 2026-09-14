@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ashish Jain — writing</title>
+    <link>https://qriousguy.com/</link>
+    <description>Long-form writing from real work: things built, broken and measured. AI systems in production, LLM pipelines, agentic tooling.</description>
+    <language>en</language>
+    <lastBuildDate>Mon, 14 Sep 2026 12:00:00 +0530</lastBuildDate>
+    <atom:link href="https://qriousguy.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Six free data sources, one LLM, and 3,872 AI companies</title>
+      <link>https://qriousguy.com/posts/six-free-sources-one-llm.html</link>
+      <guid>https://qriousguy.com/posts/six-free-sources-one-llm.html</guid>
+      <pubDate>Sat, 11 Jul 2026 09:00:00 +0530</pubDate>
+      <description>Zero paid APIs: the Wayback Machine, SEC Form D, and one Sonnet classification pass built a radar of recently funded AI companies, 551 hiring right now.</description>
+    </item>
+  </channel>
+</rss>

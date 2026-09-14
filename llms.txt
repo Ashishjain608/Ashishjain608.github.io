@@ -1,0 +1,44 @@
+# Ashish Jain, qriousguy.com
+> I build AI systems that survive production. Staff engineer in Bangalore with 10+ years in backend engineering. Builds AI systems that survive production: real-time vision at 2M+ security events a day across 5,000+ cameras and 150+ customers, LLM pipelines, agentic tooling.
+
+Updated 2026-09-14. Open to applied-AI and forward-deployed roles, consulting, and collaborations.
+
+## Facts (dated, public)
+- 2M+ security events handled a day (source: Hakimo.ai, public materials on the Scan vision pipeline; confirmed 2026-09-14)
+- 5,000+ cameras across 150+ customers (source: Hakimo.ai, public materials; confirmed 2026-09-14)
+- ~60% less CPU for edge inference on YOLOv11 / RF-DETR (source: Edge inference profiling; confirmed 2026-09-14)
+- ~$500K projected infrastructure spend avoided by the in-house inference path (source: Estimate, not audited; confirmed 2026-09-14)
+
+## Experience
+- Staff Engineer, Hakimo.ai, 2023-02 to present. AI security. Real-time vision for security: the gateway and ingestion layer, edge inference, and the operator console.
+  - Co-architected the gateway and ingestion layer behind 2M+ security events a day across 5,000+ cameras and 150+ customers
+  - Edge inference on YOLOv11 / RF-DETR cut CPU ~60%; the in-house path avoided ~$500K of projected spend
+  - WebSocket operator console: an NVR-style grid rendering hundreds of parallel camera streams at sub-second latency
+- Senior Software Engineer, Compass, 2022-02 to 2023-01
+- Member of Technical Staff, VMware, 2020-05 to 2022-02
+- Software Developer, SAP Labs, 2018-03 to 2020-04
+- Senior Systems Engineer, Infosys, 2015-08 to 2018-03
+- B.Tech, Electronics & Communication Engineering, 2015
+
+## Recognition
+- Top-10 finalist, Gen AI Exchange Hackathon 2025
+- Advised LawMatrix, a legal-tech startup, through its seed round
+
+## Projects
+- unicorn-radar (live, https://qriousguy.com/unicorn-radar-site/): 7,852 recently funded AI companies, LLM-classified from six free data sources (Wayback Machine, SEC Form D, TechCrunch and others). 2,764 hiring for AI now, 1,132 with an Indian entity. Zero paid APIs. Snapshot 2026-08-25.
+- agent-experience (live, https://qriousguy.com/agent-experience/): A field guide for designing codebases AI coding agents can actually work in. Six practices that survived adversarial fact-checking, 16 popular claims that didn't, and a case study mining 380 of my own Claude Code sessions.
+- ai-events-radar (live, https://qriousguy.com/ai-events-radar/): A field guide to Bengaluru's AI and agent events scene.
+- Prentice (launching soon): A workshop for the agents you train, running on your own Mac. An agent is a folder you own: a prompt, the direction you've folded in, and a manifest. Prentice schedules it, sandboxes it, records what each run did and cost, and gives you a Desk to judge its work.
+- Notes & Goals (launching soon): A calm, local-first macOS app that unifies tasks, notes, and goals as plain files in a folder you choose. No cloud, no accounts.
+
+## Writing
+- Six free data sources, one LLM, and 3,872 AI companies (2026-07-11): https://qriousguy.com/posts/six-free-sources-one-llm.html
+
+## Contact
+- Email: ashishjain608@gmail.com
+- GitHub: https://github.com/Ashishjain608
+- LinkedIn: https://www.linkedin.com/in/ashishjain608
+
+## Machine-readable
+- https://qriousguy.com/resume.json (JSON Resume schema)
+- https://qriousguy.com/feed.xml (RSS)
