@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Ashish Jain">
-  <!-- The A is a network: three agents at the vertices, two on the crossbar,
-       linked the way the swarm behind the site links its nodes. Colours are the
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="qriousguy.com">
+  <!-- The Q is a network: agents spaced around a ring of links, a bright hub at
+       the top, and the tail running out to one more agent. Colours are the
        Nebula tokens (bg, swarm-edge, swarm-signal, swarm-glow) from tokens.css.
        Note: XML comments cannot contain a double hyphen, so no var() names here. -->
   <defs>
@@ -18,17 +18,18 @@
   <rect width="64" height="64" rx="12" fill="url(#field)"/>
 
   <g stroke="#7C8CFF" stroke-width="5" stroke-linecap="round" fill="none">
-    <path d="M32 13 14 51"/>
-    <path d="M32 13 50 51"/>
-    <path d="M20.6 37h22.8"/>
+    <circle cx="31" cy="30" r="17"/>
+    <!-- the tail starts inside the bowl and crosses the ring: that crossing is
+         what reads as a Q rather than a magnifier -->
+    <path d="M35 34 49.5 48.5"/>
   </g>
 
-  <circle cx="32" cy="13" r="11" fill="url(#hub)" opacity=".55"/>
+  <circle cx="31" cy="13" r="11" fill="url(#hub)" opacity=".55"/>
   <g fill="#C7D2FF">
-    <circle cx="20.6" cy="37" r="3.4"/>
-    <circle cx="43.4" cy="37" r="3.4"/>
-    <circle cx="14" cy="51" r="4.4"/>
-    <circle cx="50" cy="51" r="4.4"/>
-    <circle cx="32" cy="13" r="5.4" fill="#E8EAF2"/>
+    <circle cx="48" cy="30" r="3.6"/>
+    <circle cx="14" cy="30" r="3.6"/>
+    <circle cx="31" cy="47" r="3.6"/>
+    <circle cx="43" cy="42" r="4"/>
+    <circle cx="31" cy="13" r="5.4" fill="#E8EAF2"/>
   </g>
 </svg>
