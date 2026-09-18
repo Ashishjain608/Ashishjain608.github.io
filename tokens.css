@@ -64,6 +64,10 @@
   --gutter:        clamp(20px, 5vw, 72px);
   --rhythm:        clamp(4rem, 3.7rem + 1.4vw, 7.5rem);   /* between sections */
   --radius:        4px;                                   /* flat, never pill */
+
+  /* Reading measures. Both centre in the viewport; prose is the narrower one. */
+  --measure-page:  820px;   /* list and intro pages */
+  --measure-prose: 720px;   /* a post's body */
   --header-h:      64px;                                  /* sticky header, see style.css */
 
   /* Stagger index. site.js sets this per element; the default keeps CSS valid. */

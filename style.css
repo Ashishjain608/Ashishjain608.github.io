@@ -279,13 +279,15 @@ a.row.more:hover span{transform:translateX(5px)}
 .thumb:hover::after{opacity:.2}
 
 /* ------------------------------------------------------------ doc pages --- */
-.doc,.lost{padding:var(--rhythm) var(--gutter);max-width:820px}
+.doc,.lost{padding:var(--rhythm) var(--gutter);max-width:var(--measure-page);
+  margin-inline:auto}
 .doc h1,.lost h1{font-family:var(--font-display);font-weight:900;text-transform:uppercase;
   font-size:clamp(56px,9vw,112px);line-height:.9;letter-spacing:.005em;margin-top:10px}
 .dek{color:var(--ink-2);font-size:var(--text-lead);line-height:1.45;margin-top:14px}
 .doc .dek a,.lost .dek a{color:var(--accent-ink);border-bottom:1px dotted var(--accent-ink)}
 
-.projlist{padding:0 var(--gutter) var(--rhythm);max-width:820px}
+.projlist{padding:0 var(--gutter) var(--rhythm);max-width:var(--measure-page);
+  margin-inline:auto}
 .proj,.post-card{padding:34px 0;border-top:1px solid var(--rule-strong)}
 .proj:first-child,.post-card:first-child{border-top:1px solid var(--rule-strong)}
 .proj .head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
@@ -311,7 +313,8 @@ a.row.more:hover span{transform:translateX(5px)}
 .mini{font-family:var(--font-sans);font-size:var(--text-small);color:var(--muted);margin-top:18px}
 
 /* --------------------------------------------------------- post article --- */
-.post{padding:var(--rhythm) var(--gutter);max-width:720px}
+.post{padding:var(--rhythm) var(--gutter);max-width:var(--measure-prose);
+  margin-inline:auto}
 .post h1{font-size:clamp(32px,4vw,52px);line-height:1.1;margin-top:18px;text-wrap:balance}
 .post .post-meta{margin-top:16px}
 .post h2{font-size:var(--text-h2);line-height:1.25;margin-top:44px}
