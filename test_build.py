@@ -11,6 +11,7 @@ scaffolding creeping back in.
 import pathlib
 import re
 import sys
+import xml.etree.ElementTree as ElementTree
 
 ROOT = pathlib.Path(__file__).parent
 PAGES = ["index.html", "projects/index.html", "posts/index.html", "404.html",
@@ -50,6 +51,17 @@ def main() -> int:
     check(used <= defined, f"style.css uses undefined tokens: {sorted(used - defined)}")
 
     check("--swarm-veil" in tokens, "tokens.css must expose the swarm veil knob")
+
+    # --- the favicon is valid, and drawn from the palette -------------------
+    favicon = ROOT / "favicon.svg"
+    try:
+        ElementTree.parse(favicon)          # XML comments cannot contain "--"
+    except ElementTree.ParseError as error:
+        check(False, f"favicon.svg is not well-formed: {error}")
+    palette = {h.lower() for h in re.findall(r"#[0-9a-fA-F]{6}", tokens)}
+    used_in_icon = {h.lower() for h in re.findall(r"#[0-9a-fA-F]{6}", favicon.read_text())}
+    check(used_in_icon <= palette,
+          f"favicon.svg uses colours outside the palette: {sorted(used_in_icon - palette)}")
 
     # --- the review-only scaffolding is gone --------------------------------
     for page in PAGES:
