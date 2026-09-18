@@ -1,0 +1,22 @@
+# Beads / Dolt files (added by bd init)
+.dolt/
+*.db
+.beads-credential-key
+.beads/proxieddb/
+*.gate.lock*
+
+# Agent tooling and private notes. This repo is public and holds only the files
+# published on qriousguy.com -- drafts, issues and handoffs live in the private
+# online-presence repo.
+.agents/
+.beads/
+.claude/
+.codex/
+.cursor/
+AGENTS.md
+CLAUDE.md
+handoff/
+
+# Python build cache
+__pycache__/
+*.pyc

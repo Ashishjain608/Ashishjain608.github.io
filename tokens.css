@@ -1,0 +1,86 @@
+/* ============================================================================
+   qriousguy.com — DESIGN TOKENS
+   The single source of truth for colour, type, space, and motion.
+   Change a value here and it changes everywhere; no component hard-codes one.
+   Palette: Nebula — deep indigo, an agent swarm drifting behind the page.
+   ========================================================================= */
+
+:root{
+
+  /* --- colour: surfaces ------------------------------------------------- */
+  --bg:            #070A14;   /* page base */
+  --surface:       #0D1222;   /* raised panel */
+  --surface-2:     #131A2E;   /* raised panel, one step further forward */
+
+  /* --- colour: ink ------------------------------------------------------ */
+  --ink:           #E8EAF2;   /* primary text, 14.8:1 on --bg */
+  --ink-2:         #AFB6CE;   /* body copy,    8.2:1 on --bg */
+  --muted:         #7A83A3;   /* labels, meta, 4.6:1 on --bg */
+  --faint:         #525A78;   /* disabled, absent-receipt marks */
+
+  /* --- colour: accent --------------------------------------------------- */
+  /* One saturated colour, used for emphasis and state. Never for body text. */
+  --accent:        #7C8CFF;
+  --accent-ink:    #9AA7FF;   /* accent as text, lifted to stay readable */
+  --accent-wash:   rgba(124,140,255,.14);
+  --on-accent:     #070A14;   /* text placed on an --accent fill */
+
+  /* --- colour: hairlines ------------------------------------------------ */
+  /* Translucent ink rather than separate greys, so rules track the palette. */
+  --rule:          color-mix(in srgb, var(--ink) 10%, transparent);
+  --rule-strong:   color-mix(in srgb, var(--ink) 16%, transparent);
+
+  /* --- the swarm background --------------------------------------------- */
+  /* swarm.js reads these every frame; a palette change needs no JS edit.    */
+  --swarm-node:    #AEB8E8;
+  --swarm-edge:    #7C8CFF;
+  --swarm-signal:  #C7D2FF;   /* hubs and travelling messages */
+  --swarm-glow:    #26316B;   /* the soft light source behind the field */
+  --swarm-node-a:  .52;
+  --swarm-edge-a:  .18;
+  --swarm-glow-a:  .50;
+  /* How far the swarm sits behind the content. 0 = full strength, 1 = hidden. */
+  --swarm-veil:    .40;
+
+  /* --- type ------------------------------------------------------------- */
+  --font-serif:    "Newsreader", Georgia, "Times New Roman", serif;
+  --font-sans:     "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display:  "Big Shoulders Display", Impact, "Arial Narrow", sans-serif;
+
+  --text-body:     19px;
+  --text-lead:     clamp(18px, 1.5vw, 21px);
+  --text-h1:       clamp(30px, 3.4vw, 48px);
+  --text-h2:       clamp(24px, 2.4vw, 32px);
+  --text-h3:       clamp(20px, 1.5vw, 23px);
+  --text-word:     clamp(72px, 9vw, 128px);   /* the giant chapter words */
+  --text-masthead: clamp(88px, 16.4vw, 236px);
+  --text-small:    14px;
+  --text-label:    12px;
+
+  --tracking-label: .16em;
+
+  /* --- space ------------------------------------------------------------ */
+  /* One gutter token, reused as the grid gap, so nothing looks boxed in.    */
+  --gutter:        clamp(20px, 5vw, 72px);
+  --rhythm:        clamp(4rem, 3.7rem + 1.4vw, 7.5rem);   /* between sections */
+  --radius:        4px;                                   /* flat, never pill */
+  --header-h:      64px;                                  /* sticky header, see style.css */
+
+  /* Stagger index. site.js sets this per element; the default keeps CSS valid. */
+  --i:             0;
+
+  /* --- motion ----------------------------------------------------------- */
+  /* Three curves, measured off monks.com. Pick from these; do not invent.   */
+  --ease-swift:    cubic-bezier(.2, 0, 0, 1);       /* colour, opacity, small moves */
+  --ease-reveal:   cubic-bezier(.19, 1, .22, 1);    /* scroll reveals, expansions */
+  --ease-pop:      cubic-bezier(.175, .9, .35, 1.5);/* the one overshoot: nav dot */
+
+  --dur-fast:      .2s;
+  --dur-mid:       .35s;
+  --dur-slow:      .7s;
+
+  --z-swarm:       0;   /* the canvas, furthest back */
+  --z-veil:        1;   /* pushes the swarm behind the content */
+  --z-page:        2;   /* everything readable */
+  --z-header:      10;
+}

@@ -1,7 +1,7 @@
 # Ashish Jain, qriousguy.com
 > I build AI systems that survive production. Staff engineer in Bangalore with 10+ years in backend engineering. Builds AI systems that survive production: real-time vision at 2M+ security events a day across 5,000+ cameras and 150+ customers, LLM pipelines, agentic tooling.
 
-Updated 2026-09-14. Open to applied-AI and forward-deployed roles, consulting, and collaborations.
+Updated 2026-09-18.
 
 ## Facts (dated, public)
 - 2M+ security events handled a day (source: Hakimo.ai, public materials on the Scan vision pipeline; confirmed 2026-09-14)
@@ -29,7 +29,7 @@ Updated 2026-09-14. Open to applied-AI and forward-deployed roles, consulting, a
 - agent-experience (live, https://qriousguy.com/agent-experience/): A field guide for designing codebases AI coding agents can actually work in. Six practices that survived adversarial fact-checking, 16 popular claims that didn't, and a case study mining 380 of my own Claude Code sessions.
 - ai-events-radar (live, https://qriousguy.com/ai-events-radar/): A field guide to Bengaluru's AI and agent events scene.
 - Prentice (launching soon): A workshop for the agents you train, running on your own Mac. An agent is a folder you own: a prompt, the direction you've folded in, and a manifest. Prentice schedules it, sandboxes it, records what each run did and cost, and gives you a Desk to judge its work.
-- Notes & Goals (launching soon): A calm, local-first macOS app that unifies tasks, notes, and goals as plain files in a folder you choose. No cloud, no accounts.
+- Notes & Goals (live, https://qriousguy.com/notes-goals-app/): A calm, local-first macOS app that unifies tasks, notes, and goals as plain files in a folder you choose. No cloud, no accounts.
 
 ## Writing
 - Six free data sources, one LLM, and 3,872 AI companies (2026-07-11): https://qriousguy.com/posts/six-free-sources-one-llm.html
@@ -38,7 +38,7 @@ Updated 2026-09-14. Open to applied-AI and forward-deployed roles, consulting, a
 - Email: ashishjain608@gmail.com
 - GitHub: https://github.com/Ashishjain608
 - LinkedIn: https://www.linkedin.com/in/ashishjain608
+- X: https://x.com/Ashi608
 
 ## Machine-readable
 - https://qriousguy.com/resume.json (JSON Resume schema)
-- https://qriousguy.com/feed.xml (RSS)

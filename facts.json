@@ -1,42 +1,151 @@
 {
-  "updated": "2026-09-14",
+  "updated": "2026-09-18",
   "name": "Ashish Jain",
   "title": "Staff Engineer",
-  "location": {"city": "Bangalore", "countryCode": "IN"},
+  "location": {
+    "city": "Bangalore",
+    "countryCode": "IN"
+  },
   "email": "ashishjain608@gmail.com",
   "url": "https://qriousguy.com",
   "positioning": "I build AI systems that survive production.",
   "summary": "Staff engineer in Bangalore with 10+ years in backend engineering. Builds AI systems that survive production: real-time vision at 2M+ security events a day across 5,000+ cameras and 150+ customers, LLM pipelines, agentic tooling.",
-  "availability": "Open to applied-AI and forward-deployed roles, consulting, and collaborations.",
   "profiles": [
-    {"network": "GitHub", "username": "Ashishjain608", "url": "https://github.com/Ashishjain608"},
-    {"network": "LinkedIn", "username": "ashishjain608", "url": "https://www.linkedin.com/in/ashishjain608"}
+    {
+      "network": "GitHub",
+      "username": "Ashishjain608",
+      "url": "https://github.com/Ashishjain608"
+    },
+    {
+      "network": "LinkedIn",
+      "username": "ashishjain608",
+      "url": "https://www.linkedin.com/in/ashishjain608"
+    },
+    {
+      "network": "X",
+      "username": "Ashi608",
+      "url": "https://x.com/Ashi608"
+    }
   ],
   "figures": [
-    {"value": "2M+", "what": "security events handled a day", "source": "Hakimo.ai, public materials on the Scan vision pipeline", "confirmed": "2026-09-14"},
-    {"value": "5,000+", "what": "cameras across 150+ customers", "source": "Hakimo.ai, public materials", "confirmed": "2026-09-14"},
-    {"value": "~60%", "what": "less CPU for edge inference on YOLOv11 / RF-DETR", "source": "Edge inference profiling", "confirmed": "2026-09-14"},
-    {"value": "~$500K", "what": "projected infrastructure spend avoided by the in-house inference path", "source": "Estimate, not audited", "confirmed": "2026-09-14"}
+    {
+      "value": "2M+",
+      "what": "security events handled a day",
+      "source": "Hakimo.ai, public materials on the Scan vision pipeline",
+      "confirmed": "2026-09-14"
+    },
+    {
+      "value": "5,000+",
+      "what": "cameras across 150+ customers",
+      "source": "Hakimo.ai, public materials",
+      "confirmed": "2026-09-14"
+    },
+    {
+      "value": "~60%",
+      "what": "less CPU for edge inference on YOLOv11 / RF-DETR",
+      "source": "Edge inference profiling",
+      "confirmed": "2026-09-14"
+    },
+    {
+      "value": "~$500K",
+      "what": "projected infrastructure spend avoided by the in-house inference path",
+      "source": "Estimate, not audited",
+      "confirmed": "2026-09-14"
+    }
   ],
   "work": [
-    {"name": "Hakimo.ai", "position": "Staff Engineer", "startDate": "2023-02", "summary": "AI security. Real-time vision for security: the gateway and ingestion layer, edge inference, and the operator console.",
-     "highlights": ["Co-architected the gateway and ingestion layer behind 2M+ security events a day across 5,000+ cameras and 150+ customers", "Edge inference on YOLOv11 / RF-DETR cut CPU ~60%; the in-house path avoided ~$500K of projected spend", "WebSocket operator console: an NVR-style grid rendering hundreds of parallel camera streams at sub-second latency"]},
-    {"name": "Compass", "position": "Senior Software Engineer", "startDate": "2022-02", "endDate": "2023-01"},
-    {"name": "VMware", "position": "Member of Technical Staff", "startDate": "2020-05", "endDate": "2022-02"},
-    {"name": "SAP Labs", "position": "Software Developer", "startDate": "2018-03", "endDate": "2020-04"},
-    {"name": "Infosys", "position": "Senior Systems Engineer", "startDate": "2015-08", "endDate": "2018-03"}
+    {
+      "name": "Hakimo.ai",
+      "position": "Staff Engineer",
+      "startDate": "2023-02",
+      "summary": "AI security. Real-time vision for security: the gateway and ingestion layer, edge inference, and the operator console.",
+      "highlights": [
+        "Co-architected the gateway and ingestion layer behind 2M+ security events a day across 5,000+ cameras and 150+ customers",
+        "Edge inference on YOLOv11 / RF-DETR cut CPU ~60%; the in-house path avoided ~$500K of projected spend",
+        "WebSocket operator console: an NVR-style grid rendering hundreds of parallel camera streams at sub-second latency"
+      ]
+    },
+    {
+      "name": "Compass",
+      "position": "Senior Software Engineer",
+      "startDate": "2022-02",
+      "endDate": "2023-01"
+    },
+    {
+      "name": "VMware",
+      "position": "Member of Technical Staff",
+      "startDate": "2020-05",
+      "endDate": "2022-02"
+    },
+    {
+      "name": "SAP Labs",
+      "position": "Software Developer",
+      "startDate": "2018-03",
+      "endDate": "2020-04"
+    },
+    {
+      "name": "Infosys",
+      "position": "Senior Systems Engineer",
+      "startDate": "2015-08",
+      "endDate": "2018-03"
+    }
   ],
-  "education": [{"institution": "B.Tech, Electronics & Communication Engineering", "endDate": "2015"}],
-  "awards": ["Top-10 finalist, Gen AI Exchange Hackathon 2025", "Advised LawMatrix, a legal-tech startup, through its seed round"],
+  "education": [
+    {
+      "institution": "B.Tech, Electronics & Communication Engineering",
+      "endDate": "2015"
+    }
+  ],
+  "awards": [
+    "Top-10 finalist, Gen AI Exchange Hackathon 2025",
+    "Advised LawMatrix, a legal-tech startup, through its seed round"
+  ],
   "projects": [
-    {"name": "unicorn-radar", "status": "live", "url": "https://qriousguy.com/unicorn-radar-site/", "description": "7,852 recently funded AI companies, LLM-classified from six free data sources (Wayback Machine, SEC Form D, TechCrunch and others). 2,764 hiring for AI now, 1,132 with an Indian entity. Zero paid APIs. Snapshot 2026-08-25."},
-    {"name": "agent-experience", "status": "live", "url": "https://qriousguy.com/agent-experience/", "description": "A field guide for designing codebases AI coding agents can actually work in. Six practices that survived adversarial fact-checking, 16 popular claims that didn't, and a case study mining 380 of my own Claude Code sessions."},
-    {"name": "ai-events-radar", "status": "live", "url": "https://qriousguy.com/ai-events-radar/", "description": "A field guide to Bengaluru's AI and agent events scene."},
-    {"name": "Prentice", "status": "launching soon", "description": "A workshop for the agents you train, running on your own Mac. An agent is a folder you own: a prompt, the direction you've folded in, and a manifest. Prentice schedules it, sandboxes it, records what each run did and cost, and gives you a Desk to judge its work."},
-    {"name": "Notes & Goals", "status": "launching soon", "description": "A calm, local-first macOS app that unifies tasks, notes, and goals as plain files in a folder you choose. No cloud, no accounts."}
+    {
+      "name": "unicorn-radar",
+      "status": "live",
+      "url": "https://qriousguy.com/unicorn-radar-site/",
+      "description": "7,852 recently funded AI companies, LLM-classified from six free data sources (Wayback Machine, SEC Form D, TechCrunch and others). 2,764 hiring for AI now, 1,132 with an Indian entity. Zero paid APIs. Snapshot 2026-08-25."
+    },
+    {
+      "name": "agent-experience",
+      "status": "live",
+      "url": "https://qriousguy.com/agent-experience/",
+      "description": "A field guide for designing codebases AI coding agents can actually work in. Six practices that survived adversarial fact-checking, 16 popular claims that didn't, and a case study mining 380 of my own Claude Code sessions."
+    },
+    {
+      "name": "ai-events-radar",
+      "status": "live",
+      "url": "https://qriousguy.com/ai-events-radar/",
+      "description": "A field guide to Bengaluru's AI and agent events scene."
+    },
+    {
+      "name": "Prentice",
+      "status": "launching soon",
+      "description": "A workshop for the agents you train, running on your own Mac. An agent is a folder you own: a prompt, the direction you've folded in, and a manifest. Prentice schedules it, sandboxes it, records what each run did and cost, and gives you a Desk to judge its work."
+    },
+    {
+      "name": "Notes & Goals",
+      "status": "live",
+      "description": "A calm, local-first macOS app that unifies tasks, notes, and goals as plain files in a folder you choose. No cloud, no accounts.",
+      "url": "https://qriousguy.com/notes-goals-app/"
+    }
   ],
   "posts": [
-    {"title": "Six free data sources, one LLM, and 3,872 AI companies", "date": "2026-07-11", "url": "https://qriousguy.com/posts/six-free-sources-one-llm.html", "dek": "Zero paid APIs: the Wayback Machine, SEC Form D, and one Sonnet classification pass built a radar of recently funded AI companies, 551 hiring right now."}
+    {
+      "title": "Six free data sources, one LLM, and 3,872 AI companies",
+      "date": "2026-07-11",
+      "url": "https://qriousguy.com/posts/six-free-sources-one-llm.html",
+      "dek": "Zero paid APIs: the Wayback Machine, SEC Form D, and one Sonnet classification pass built a radar of recently funded AI companies, 551 hiring right now."
+    }
   ],
-  "knowsAbout": ["Computer vision", "Edge inference", "Event pipelines", "LLM pipelines", "Agentic tooling", "Distributed systems", "Real-time video"]
+  "knowsAbout": [
+    "Computer vision",
+    "Edge inference",
+    "Event pipelines",
+    "LLM pipelines",
+    "Agentic tooling",
+    "Distributed systems",
+    "Real-time video"
+  ]
 }

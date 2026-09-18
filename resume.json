@@ -5,7 +5,7 @@
     "label": "Staff Engineer, applied AI",
     "email": "ashishjain608@gmail.com",
     "url": "https://qriousguy.com",
-    "summary": "I build AI systems that survive production. Staff engineer in Bangalore with 10+ years in backend engineering. Builds AI systems that survive production: real-time vision at 2M+ security events a day across 5,000+ cameras and 150+ customers, LLM pipelines, agentic tooling. Open to applied-AI and forward-deployed roles, consulting, and collaborations.",
+    "summary": "I build AI systems that survive production. Staff engineer in Bangalore with 10+ years in backend engineering. Builds AI systems that survive production: real-time vision at 2M+ security events a day across 5,000+ cameras and 150+ customers, LLM pipelines, agentic tooling.",
     "location": {
       "city": "Bangalore",
       "countryCode": "IN"
@@ -20,6 +20,11 @@
         "network": "LinkedIn",
         "username": "ashishjain608",
         "url": "https://www.linkedin.com/in/ashishjain608"
+      },
+      {
+        "network": "X",
+        "username": "Ashi608",
+        "url": "https://x.com/Ashi608"
       }
     ]
   },
@@ -100,8 +105,9 @@
     },
     {
       "name": "Notes & Goals",
-      "status": "launching soon",
-      "description": "A calm, local-first macOS app that unifies tasks, notes, and goals as plain files in a folder you choose. No cloud, no accounts."
+      "status": "live",
+      "description": "A calm, local-first macOS app that unifies tasks, notes, and goals as plain files in a folder you choose. No cloud, no accounts.",
+      "url": "https://qriousguy.com/notes-goals-app/"
     }
   ],
   "publications": [
@@ -136,7 +142,7 @@
     }
   ],
   "meta": {
-    "lastModified": "2026-09-14",
+    "lastModified": "2026-09-18",
     "canonical": "https://qriousguy.com/resume.json"
   }
 }
