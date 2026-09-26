@@ -75,6 +75,9 @@ def main() -> int:
                             (">RSS<", "RSS is not surfaced in the UI")]:
             check(banned not in html, f"{page}: {banned} still present ({why})")
 
+        check('<script src="/analytics.js" async></script>' in html,
+              f"{page}: missing the analytics tag")
+
         # --- both nav groups on every page ----------------------------------
         check('class="nav-group chapters"' in html, f"{page}: missing the chapter nav group")
         check('class="nav-group pages"' in html, f"{page}: missing the page nav group")

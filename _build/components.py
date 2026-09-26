@@ -76,6 +76,7 @@ def head(*, title: str, description: str, canonical: str, extra: str = "",
         f'<link rel="stylesheet" href="{FONTS}">',
         '<link rel="stylesheet" href="/tokens.css">',
         '<link rel="stylesheet" href="/style.css">',
+        '<script src="/analytics.js" async></script>',
     ]
     if extra:
         tags.append(extra)
