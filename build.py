@@ -13,7 +13,7 @@ import json
 import pathlib
 
 from _build import pages
-from _build.content import POSTS
+from _build.content import BASE_URL, POSTS
 
 ROOT = pathlib.Path(__file__).parent
 CONTENT = ROOT / "content"
@@ -72,6 +72,17 @@ def render_resume(facts: dict) -> str:
     return json.dumps(resume, indent=2, ensure_ascii=False) + "\n"
 
 
+def render_sitemap(facts: dict) -> str:
+    """Every indexable page, including project pages other repos serve under qriousguy.com/<repo>/."""
+    urls = [f"{BASE_URL}{path}" for path in ("/", "/projects/", "/posts/")]
+    urls += [BASE_URL + post.href for post in POSTS]
+    urls += [p["url"] for p in facts["projects"] if p.get("url", "").startswith(BASE_URL + "/")]
+    entries = "".join(f"  <url><loc>{url}</loc></url>\n" for url in dict.fromkeys(urls))
+    return ('<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+            f"{entries}</urlset>\n")
+
+
 def main() -> None:
     facts = json.loads((ROOT / "facts.json").read_text())
     print("building qriousguy.com")
@@ -90,6 +101,8 @@ def main() -> None:
 
     write("llms.txt", render_llms_txt(facts))
     write("resume.json", render_resume(facts))
+    write("sitemap.xml", render_sitemap(facts))
+    write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {BASE_URL}/sitemap.xml\n")
     print("done")
 
 
