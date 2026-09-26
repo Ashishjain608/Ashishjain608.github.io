@@ -182,6 +182,7 @@ PROJECTS = [
             ("What", "A calm, local-first macOS app that keeps tasks, notes and goals as plain files in a folder you choose."),
             ("Why", "Every tool in this category wants an account and a sync server. This one wants a folder."),
             ("How", "No cloud, no accounts. <b>Today</b> is a live query across all your tasks. A ⌘K palette finds a task, a goal, or a line inside a note."),
+            ("Install", "Download the .dmg and drag it to Applications. Every release is signed and notarized by Apple, so it opens with a double-click."),
         ],
         thumb=("https://qriousguy.com/notes-goals-app/", "/assets/notes-goals-dark.webp", "Notes and Goals, Today view", 720, 470),
         links=[("Project page", "https://qriousguy.com/notes-goals-app/", "arrow-up-right"),
