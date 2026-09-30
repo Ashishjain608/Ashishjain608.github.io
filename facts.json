@@ -129,6 +129,12 @@
       "status": "live",
       "description": "A calm, local-first macOS app that unifies tasks, notes, and goals as plain files in a folder you choose. No cloud, no accounts.",
       "url": "https://qriousguy.com/notes-goals-app/"
+    },
+    {
+      "name": "WriteBetter",
+      "status": "live",
+      "description": "A free, open-source macOS menu-bar app. Press \u21e7\u2318Space on any text and a floating panel streams a rewrite from Claude, GPT, Gemini, a local model, or Apple's on-device model. Your own key, no account, no server.",
+      "url": "https://qriousguy.com/write-better/"
     }
   ],
   "posts": [
