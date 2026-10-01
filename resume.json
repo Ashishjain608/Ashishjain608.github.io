@@ -100,8 +100,9 @@
     },
     {
       "name": "Prentice",
-      "status": "launching soon",
-      "description": "A workshop for the agents you train, running on your own Mac. An agent is a folder you own: a prompt, the direction you've folded in, and a manifest. Prentice schedules it, sandboxes it, records what each run did and cost, and gives you a Desk to judge its work."
+      "status": "private beta",
+      "description": "A software factory for all, on your Mac. Assemble a team of agents around one goal; they work in a sandbox, their drafts wait on your Desk, and every keep, cut and reason you give becomes the direction they follow next time.",
+      "url": "https://qriousguy.com/prentice/"
     },
     {
       "name": "Notes & Goals",
@@ -142,7 +143,7 @@
     }
   ],
   "meta": {
-    "lastModified": "2026-09-18",
+    "lastModified": "2026-10-01",
     "canonical": "https://qriousguy.com/resume.json"
   }
 }

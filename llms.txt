@@ -1,7 +1,7 @@
 # Ashish Jain, qriousguy.com
 > I build AI systems that survive production. Staff engineer in Bangalore with 10+ years in backend engineering. Builds AI systems that survive production: real-time vision at 2M+ security events a day across 5,000+ cameras and 150+ customers, LLM pipelines, agentic tooling.
 
-Updated 2026-09-18.
+Updated 2026-10-01.
 
 ## Facts (dated, public)
 - 2M+ security events handled a day (source: Hakimo.ai, public materials on the Scan vision pipeline; confirmed 2026-09-14)
@@ -28,7 +28,7 @@ Updated 2026-09-18.
 - unicorn-radar (live, https://qriousguy.com/unicorn-radar-site/): 7,852 recently funded AI companies, LLM-classified from six free data sources (Wayback Machine, SEC Form D, TechCrunch and others). 2,764 hiring for AI now, 1,132 with an Indian entity. Zero paid APIs. Snapshot 2026-08-25.
 - agent-experience (live, https://qriousguy.com/agent-experience/): A field guide for designing codebases AI coding agents can actually work in. Six practices that survived adversarial fact-checking, 16 popular claims that didn't, and a case study mining 380 of my own Claude Code sessions.
 - ai-events-radar (live, https://qriousguy.com/ai-events-radar/): A field guide to Bengaluru's AI and agent events scene.
-- Prentice (launching soon): A workshop for the agents you train, running on your own Mac. An agent is a folder you own: a prompt, the direction you've folded in, and a manifest. Prentice schedules it, sandboxes it, records what each run did and cost, and gives you a Desk to judge its work.
+- Prentice (private beta, https://qriousguy.com/prentice/): A software factory for all, on your Mac. Assemble a team of agents around one goal; they work in a sandbox, their drafts wait on your Desk, and every keep, cut and reason you give becomes the direction they follow next time.
 - Notes & Goals (live, https://qriousguy.com/notes-goals-app/): A calm, local-first macOS app that unifies tasks, notes, and goals as plain files in a folder you choose. No cloud, no accounts.
 
 ## Writing

@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prentice — a software factory for all, that learns from you</title>
+<meta name="description" content="Prentice is a software factory on your Mac. Assemble a team of agents around one goal; they work in a sandbox, wait on your Desk, and learn from every keep, cut and reason you give.">
+<link rel="canonical" href="https://qriousguy.com/prentice/">
+<meta name="theme-color" content="#0E1219">
+<link rel="icon" href="/prentice/mark.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="qriousguy.com">
+<meta property="og:title" content="Prentice — build the team, then teach it">
+<meta property="og:description" content="A software factory for all. Agents draft, you decide, they remember. Local-first, on your Mac.">
+<meta property="og:url" content="https://qriousguy.com/prentice/">
+<meta property="og:image" content="https://qriousguy.com/prentice/media/poster.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@Ashi608">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Hanken+Grotesk:wght@400;500;600&display=swap">
+<link rel="preload" as="image" href="/prentice/media/poster.webp">
+<script src="/analytics.js" async></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Prentice",
+ "applicationCategory":"DeveloperApplication","operatingSystem":"macOS 13+",
+ "description":"A local-first software factory: a team of AI agents you train on your own Mac. Agents draft, you decide, they learn from your reasons.",
+ "url":"https://qriousguy.com/prentice/","softwareVersion":"0.1.1",
+ "author":{"@type":"Person","name":"Ashish Jain","url":"https://qriousguy.com/"},
+ "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<style>
+/* Prentice product page. Palette is the app's own "Cold shop" (ADR 0007):
+   graphite ground, steel ink, and ember — which, here as in the app, marks
+   only the moment a person decides. Motion follows qrious-ux: two curves,
+   opacity + transform only, reduced motion gated in CSS. */
+:root{
+  --ground:#0E1219; --panel:#131722; --panel-2:#181D2A;
+  --ink:#E6EAF2; --ink-2:#A8B2C4; --muted:#8592A6;
+  --ember:#F98A45; --ember-wash:rgba(249,138,69,.12); --on-ember:#131722;
+  --rule:color-mix(in srgb,var(--ink) 10%,transparent);
+  --rule-strong:color-mix(in srgb,var(--ink) 16%,transparent);
+  --temper:linear-gradient(90deg,#3A4A63 0%,#6E2A1E 38%,#C4471A 58%,#F5901F 76%,#FFC85E 90%,#FFF3D6 100%);
+  --display:"Big Shoulders Display",Impact,"Arial Narrow",sans-serif;
+  --serif:"Newsreader",Georgia,serif;
+  --sans:"Hanken Grotesk",system-ui,-apple-system,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,monospace;
+  --ease-swift:cubic-bezier(.2,0,0,1); --ease-reveal:cubic-bezier(.19,1,.22,1);
+  --fast:.2s; --slow:.6s;
+  --gutter:clamp(16px,4vw,40px); --measure:1120px; --read:680px;
+  --section:clamp(4rem,3.7rem + 1.4vw,7.5rem); --radius:4px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--serif);
+  font-size:19px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip}
+h1,h2,h3,p,ol,ul,dl,dd,figure{margin:0;padding:0}
+ol,ul{list-style:none}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--ember);color:var(--on-ember)}
+:focus-visible{outline:none;border-radius:2px;
+  box-shadow:0 0 0 2px var(--ground),0 0 0 4px var(--ember),0 0 0 6px var(--panel)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.grain{position:fixed;inset:0;pointer-events:none;opacity:.022;z-index:0;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+.wrap{position:relative;z-index:1;max-width:var(--measure);margin:0 auto;padding-inline:var(--gutter)}
+.num{font-variant-numeric:tabular-nums}
+code,.mono{font-family:var(--mono);font-size:.82em}
+
+/* --- labels and links ---------------------------------------------------- */
+.label{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted)}
+.link{position:relative;color:var(--ink);transition:color var(--fast) var(--ease-swift)}
+.link::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:currentColor;
+  transform:scaleX(0);transform-origin:left;transition:transform var(--fast) var(--ease-swift)}
+.link:hover{color:var(--ember)} .link:hover::after{transform:scaleX(1)}
+
+/* --- header -------------------------------------------------------------- */
+.top{display:flex;align-items:center;gap:12px;padding-block:22px;font-family:var(--sans);font-size:14px;color:var(--ink-2)}
+.top .brand{display:flex;align-items:center;gap:10px;color:var(--ink);font-weight:600;font-size:16px}
+.top .brand img{width:26px;height:26px}
+.top nav{margin-left:auto;display:flex;gap:24px}
+.top nav a{color:var(--ink-2);transition:color var(--fast) var(--ease-swift)}
+.top nav a:hover{color:var(--ink)}
+@media (max-width:640px){.top nav a:not(:last-child){display:none}}
+
+/* --- hero ---------------------------------------------------------------- */
+.hero{padding-block:clamp(40px,7vw,96px) 0;position:relative}
+.hero::before{content:"";position:absolute;z-index:-1;left:-10%;top:-30%;width:70%;height:120%;
+  background:radial-gradient(closest-side,rgba(249,138,69,.10),transparent 70%);pointer-events:none}
+.hero .lines>*{animation:fadeUp .6s var(--ease-swift) backwards}
+.hero .lines>*:nth-child(2){animation-delay:.08s}
+.hero .lines>*:nth-child(3){animation-delay:.16s}
+.hero .lines>*:nth-child(4){animation-delay:.24s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+h1{font-family:var(--display);font-weight:900;text-transform:uppercase;letter-spacing:-.005em;
+  font-size:clamp(64px,11.5vw,168px);line-height:.86;margin-top:18px}
+h1 em{font-style:normal;color:var(--ember)}
+.lead{max-width:var(--read);margin-top:28px;font-size:clamp(19px,1.6vw,22px);color:var(--ink-2)}
+.lead b{color:var(--ink);font-weight:500}
+.ask{display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px;margin-top:32px;font-family:var(--sans);font-size:15px;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 20px;border-radius:var(--radius);
+  background:var(--ink);color:var(--ground);font-weight:600;font-size:16px;
+  transition:transform var(--fast) var(--ease-swift),opacity var(--fast) var(--ease-swift)}
+.btn:hover{transform:translateY(-2px)}
+.btn svg{width:16px;height:16px;transition:transform var(--fast) var(--ease-swift)}
+.btn:hover svg{transform:translateX(3px)}
+
+/* --- the demo: one window, a temper edge, chapters under it -------------- */
+.demo{margin-top:clamp(40px,6vw,72px)}
+.window{position:relative;border-radius:6px;overflow:hidden;background:var(--panel);
+  border:1px solid var(--rule-strong)}
+.window::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;background:var(--temper);z-index:2}
+.chrome{display:flex;align-items:center;gap:8px;height:34px;padding:0 14px;border-bottom:1px solid var(--rule);
+  font-family:var(--sans);font-size:12px;color:var(--muted)}
+.chrome i{width:10px;height:10px;border-radius:50%;background:var(--rule-strong)}
+.chrome span{margin-left:10px}
+.screen{position:relative;aspect-ratio:16/10;background:#EBEEF3}
+.screen video,.screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.toggle{position:absolute;right:12px;bottom:12px;z-index:3;display:flex;align-items:center;gap:8px;
+  padding:7px 11px;border:0;border-radius:var(--radius);cursor:pointer;
+  background:rgba(19,23,34,.82);color:var(--ink);font:600 12px var(--sans);
+  transition:opacity var(--fast) var(--ease-swift)}
+.toggle:hover{opacity:.85}
+.toggle svg{width:12px;height:12px;fill:currentColor}
+.chapters{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:14px;font-family:var(--sans)}
+.chapters button{all:unset;cursor:pointer;position:relative;padding:14px 12px 4px 0;font-size:14px;line-height:1.35;color:var(--muted);
+  transition:color var(--fast) var(--ease-swift)}
+.chapters button::before{content:"";position:absolute;left:0;right:12px;top:0;height:2px;background:var(--rule-strong)}
+.chapters button::after{content:"";position:absolute;left:0;right:12px;top:0;height:2px;background:var(--ink);
+  transform:scaleX(var(--p,0));transform-origin:left;transition:transform .25s var(--ease-swift)}
+.chapters button:hover,.chapters button[aria-current="true"]{color:var(--ink)}
+.chapters b{display:block;font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:2px}
+.chapters button:focus-visible{box-shadow:none;outline:2px solid var(--ember);outline-offset:4px}
+.demo figcaption{margin-top:18px;font-family:var(--sans);font-size:14px;color:var(--muted)}
+@media (max-width:760px){
+  .chapters{grid-template-columns:1fr 1fr}
+  .chapters button:nth-child(n+3){display:none}
+  .chapters button[aria-current="true"]{display:block}
+}
+
+/* --- sections ------------------------------------------------------------ */
+section.block{padding-block:var(--section);border-top:1px solid var(--rule)}
+section.block:first-of-type{border-top:0}
+.head{max-width:var(--read);margin-bottom:clamp(32px,4vw,56px)}
+h2{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(40px,5.6vw,76px);line-height:.92;margin-top:14px}
+.dek{margin-top:18px;color:var(--ink-2)}
+h3{font-family:var(--sans);font-weight:600;font-size:18px;line-height:1.35}
+
+/* the team */
+.team{display:grid;grid-template-columns:1.55fr 1fr;gap:clamp(28px,4vw,56px);align-items:start}
+.roster{border-top:1px solid var(--rule-strong)}
+.roster li{display:grid;grid-template-columns:140px 1fr auto;gap:6px 18px;align-items:baseline;
+  padding:16px 0;border-bottom:1px solid var(--rule)}
+.roster .what{grid-column:2;grid-row:1} .roster .state{grid-column:3;grid-row:1}
+.roster .who{font-family:var(--sans);font-weight:600;font-size:16px}
+.roster .what{font-size:17px;color:var(--ink-2)}
+.roster .what code{color:var(--muted)}
+.state{font-family:var(--sans);font-size:12px;font-weight:600;white-space:nowrap;display:inline-flex;align-items:center;gap:7px;color:var(--muted)}
+.state::before{content:"";width:7px;height:7px;border-radius:50%;border:1.5px solid currentColor}
+.state.today{color:var(--ink)} .state.today::before{background:currentColor}
+@media (max-width:640px){.roster li{grid-template-columns:1fr auto}.roster .state{grid-column:2}.roster .what{grid-column:1/-1;grid-row:2}}
+.tree{background:var(--panel);border:1px solid var(--rule-strong);border-radius:var(--radius);padding:20px 22px;
+  font-family:var(--mono);font-size:13.5px;line-height:1.75;color:var(--ink-2);overflow-x:auto}
+.tree .d{color:var(--ink)} .tree .c{color:var(--muted)}
+.tree pre{margin:0;font:inherit}
+.aside{margin-top:18px;font-size:16px;color:var(--ink-2)}
+.next-line{margin-top:28px;font-size:17px;color:var(--ink-2);max-width:var(--read)}
+.team>*,.learn>*,.facts>*{min-width:0}
+@media (max-width:900px){.team{grid-template-columns:1fr}}
+
+/* the loop: a real sequence, so it is numbered */
+.loop{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--rule-strong)}
+.loop li{position:relative;padding:22px 20px 0 0}
+.loop .n{font-family:var(--display);font-weight:800;font-size:44px;line-height:1;color:var(--muted)}
+.loop h3{margin-top:10px}
+.loop p{margin-top:8px;font-size:16px;color:var(--ink-2)}
+.loop li.you .n,.loop li.you h3{color:var(--ember)}
+.loop li.you::before{content:"";position:absolute;left:0;right:20px;top:-1px;height:2px;background:var(--ember)}
+@media (max-width:900px){.loop{grid-template-columns:1fr 1fr;row-gap:28px}}
+@media (max-width:520px){.loop{grid-template-columns:1fr}}
+.learn{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,56px);margin-top:clamp(40px,5vw,72px)}
+@media (max-width:900px){.learn{grid-template-columns:1fr}}
+.reasons dt{font-family:var(--sans);font-weight:600;font-size:15px;margin-top:18px}
+.reasons dt:first-child{margin-top:12px}
+.reasons dd{font-size:16px;color:var(--ink-2)}
+.diff{background:var(--panel);border:1px solid var(--rule-strong);border-radius:var(--radius);overflow:hidden}
+.diff .file{display:flex;justify-content:space-between;padding:10px 16px;border-bottom:1px solid var(--rule);
+  font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.diff pre{margin:0;padding:14px 0;font-family:var(--mono);font-size:13px;line-height:1.7;overflow-x:auto;color:var(--ink-2)}
+.diff pre span{display:block;padding:0 16px}
+.diff .add{background:var(--ember-wash);color:var(--ink)}
+.diff .why{color:var(--muted)}
+.small{margin-top:12px;font-family:var(--sans);font-size:13px;color:var(--muted)}
+
+/* principles: a term-description list, two columns */
+.principles{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(28px,4vw,64px);border-top:1px solid var(--rule-strong)}
+.principles div{padding:22px 0;border-bottom:1px solid var(--rule)}
+.principles dt{font-family:var(--sans);font-weight:600;font-size:18px}
+.principles dd{margin-top:6px;font-size:17px;color:var(--ink-2)}
+.principles dd.aka{margin-top:10px;font-family:var(--sans);font-size:12px;letter-spacing:.06em;color:var(--muted)}
+@media (max-width:760px){.principles{grid-template-columns:1fr}}
+
+/* architecture: a flow you can read on a phone */
+.hld{display:grid;grid-template-columns:repeat(4,1fr);gap:28px 36px;counter-reset:s}
+.hld li{position:relative;padding:16px 18px;border:1px solid var(--rule-strong);border-radius:var(--radius);background:var(--panel)}
+.hld li:not(:nth-child(4n)):not(:last-child)::after{content:"→";position:absolute;right:-27px;top:50%;transform:translateY(-50%);
+  font-family:var(--sans);color:var(--muted)}
+.hld h3{font-size:15px}
+.hld p{margin-top:6px;font-family:var(--sans);font-size:14px;line-height:1.45;color:var(--ink-2)}
+.hld li.you{border-color:var(--ember)} .hld li.you h3{color:var(--ember)}
+.hld li.back{grid-column:1/-1;background:transparent;border-style:dashed;text-align:center}
+@media (max-width:900px){.hld{grid-template-columns:1fr 1fr}.hld li::after{display:none}}
+@media (max-width:520px){.hld{grid-template-columns:1fr}}
+
+/* yours */
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,64px)}
+.facts dl div{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--rule)}
+.facts dt{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--muted);padding-top:3px}
+.facts dd{font-size:17px;color:var(--ink-2)}
+.facts dd b{color:var(--ink);font-weight:500}
+.notyet li{padding:14px 0;border-bottom:1px solid var(--rule);font-size:17px;color:var(--ink-2)}
+.notyet li b{color:var(--ink);font-weight:500}
+@media (max-width:900px){.facts{grid-template-columns:1fr}}
+@media (max-width:520px){.facts dl div{grid-template-columns:1fr;gap:2px}}
+
+/* close */
+.close{padding-block:var(--section);border-top:1px solid var(--rule);text-align:left}
+.close h2{max-width:14ch}
+footer{padding-block:28px 40px;border-top:1px solid var(--rule);font-family:var(--sans);font-size:14px;color:var(--muted);
+  display:flex;flex-wrap:wrap;gap:12px 28px}
+footer .push{margin-left:auto}
+
+/* reveal: fire once */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity var(--slow) var(--ease-reveal),transform var(--slow) var(--ease-reveal)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div class="wrap">
+
+<header class="top">
+  <a class="brand" href="/prentice/"><img src="/prentice/mark.svg" alt="" width="26" height="26">Prentice</a>
+  <nav aria-label="Page">
+    <a href="#team">Team</a><a href="#loop">How it learns</a><a href="#principles">Principles</a><a href="/">qriousguy.com</a>
+  </nav>
+</header>
+
+<main id="main">
+<section class="hero" aria-labelledby="h">
+  <div class="lines">
+    <p class="label">Prentice · a software factory for all · macOS</p>
+    <h1 id="h">Build the team.<br>Then <em>teach&nbsp;it.</em></h1>
+    <p class="lead">Give a team of agents one goal: spec, build, review, test, write the release notes and the launch post. They work in a sandbox on your Mac, and everything they make waits on your Desk. <b>Every keep, cut and reason you give becomes how they work next time.</b></p>
+    <div class="ask">
+      <a class="btn" href="mailto:ashishjain608@gmail.com?subject=Prentice%20beta">Ask for the beta<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
+      <span>macOS 13+ · runs on your Claude Code or Codex login · MIT, open source soon</span>
+    </div>
+  </div>
+
+  <figure class="demo">
+    <div class="window">
+      <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span>Prentice — Desk</span></div>
+      <div class="screen">
+        <video id="demo" muted loop playsinline preload="metadata" poster="/prentice/media/poster.webp"
+               aria-label="Recording of the Prentice Desk: a six-agent team working toward one goal, a reviewer's draft being judged, and the rule it learned.">
+          <source src="/prentice/media/prentice-demo.webm" type="video/webm">
+          <source src="/prentice/media/prentice-demo.mp4" type="video/mp4">
+        </video>
+        <button class="toggle" id="toggle" type="button" aria-pressed="false">
+          <svg viewBox="0 0 12 12" aria-hidden="true"><path id="ticon" d="M2 1h3v10H2zM7 1h3v10H7z"/></svg><span id="tlabel">Pause</span>
+        </button>
+      </div>
+    </div>
+    <div class="chapters" id="chapters" role="group" aria-label="Jump to a moment in the recording">
+      <button type="button" data-start="0" data-end="2.95" aria-current="false"><b>Desk</b>What your agents did while you were away</button>
+      <button type="button" data-start="2.95" data-end="8.52" aria-current="false"><b>Team</b>Six agents, one goal</button>
+      <button type="button" data-start="8.52" data-end="20.34" aria-current="false"><b>Review</b>Keep or cut each finding, and say why</button>
+      <button type="button" data-start="20.34" data-end="31.31" aria-current="false"><b>Teach</b>Fold your judgments into its rules</button>
+      <button type="button" data-start="31.31" data-end="35.6" aria-current="false"><b>Spend</b>Measured cost, per agent</button>
+    </div>
+    <figcaption>A simulated workshop, recorded in the real app: six agents on one goal, two weeks in. Names and numbers are made up; the screens are not.</figcaption>
+  </figure>
+</section>
+
+<section class="block reveal" id="team" aria-labelledby="team-h">
+  <div class="head">
+    <p class="label">The team</p>
+    <h2 id="team-h">Every company is a team of jobs.</h2>
+    <p class="dek">A <b>bench</b> is one goal and the agents working on it: one shared budget, one review lane. Start an agent from a template, or describe the job and Prentice interviews you and writes the agent for you.</p>
+  </div>
+  <div class="team">
+    <ul class="roster">
+      <li><span class="who">PR reviewer</span><span class="state today">Ships today</span><span class="what">Reviews the PRs waiting on you, at their own head, with findings pinned to <code>file:line</code>.</span></li>
+      <li><span class="who">Ops check</span><span class="state today">Ships today</span><span class="what">Runs your script on a schedule and reports only what changed.</span></li>
+      <li><span class="who">Daily note</span><span class="state today">Ships today</span><span class="what">A morning brief written from the sources you point it at.</span></li>
+      <li><span class="who">Spec writer</span><span class="state">Template next</span><span class="what">Turns interview notes into a one-page spec you can argue with.</span></li>
+      <li><span class="who">Builder</span><span class="state">Template next</span><span class="what">Drafts the change in its own git worktree. You merge; pushing stays off by default.</span></li>
+      <li><span class="who">QA sweep</span><span class="state">Template next</span><span class="what">Runs your test and smoke suites and flags what broke since yesterday.</span></li>
+      <li><span class="who">Release notes</span><span class="state">Template next</span><span class="what">Drafts the changelog from what actually merged.</span></li>
+      <li><span class="who">Launch copy</span><span class="state">Template next</span><span class="what">Drafts the post and the landing copy, in the voice you taught it.</span></li>
+    </ul>
+    <div>
+      <div class="tree" aria-label="A bench and an agent, as folders">
+<pre><span class="d">benches/ship-quillo/</span>
+  bench.toml    <span class="c"># the team, one daily ceiling</span>
+  goal.md       <span class="c"># read first by every agent</span>
+<span class="d">agents/pr-review/</span>
+  agent.toml    <span class="c"># when it runs, model, budget</span>
+  prompt.md     <span class="c"># the job</span>
+  direction.md  <span class="c"># the rules you taught it</span>
+  brief.md      <span class="c"># what you asked for</span></pre>
+      </div>
+      <p class="aside">A team is plain files in a folder you own. Read them, diff them, keep them in git. They work without this app.</p>
+    </div>
+  </div>
+  <p class="next-line"><b>Next:</b> whole-company templates, a bench in one step. A SaaS launch, an open-source maintainer's desk, a content studio, an agency back office.</p>
+</section>
+
+<section class="block reveal" id="loop" aria-labelledby="loop-h">
+  <div class="head">
+    <p class="label">The human feedback loop</p>
+    <h2 id="loop-h">Agents draft. You decide. They remember.</h2>
+    <p class="dek">Most agent tools stop at the output. Prentice treats your judgment as the training signal, so the team gets better at <i>your</i> project rather than at projects in general.</p>
+  </div>
+  <ol class="loop">
+    <li><span class="n num">1</span><h3>Run</h3><p>On its own schedule or when you ask, in its own git worktree, inside a budget and a deny list.</p></li>
+    <li><span class="n num">2</span><h3>Draft</h3><p>It hands back findings you judge one at a time, not a wall of text.</p></li>
+    <li class="you"><span class="n num">3</span><h3>You decide</h3><p>Keep, cut or send back. Every judgment carries a reason.</p></li>
+    <li><span class="n num">4</span><h3>Teach</h3><p>Turn what you judged into a line of direction. You write it, or accept a diff you talk through. Every change can be reverted.</p></li>
+    <li><span class="n num">5</span><h3>Run again</h3><p>The next prompt carries the new direction and your latest twenty judgments.</p></li>
+  </ol>
+  <div class="learn">
+    <div>
+      <h3>A reason says whose fault it was</h3>
+      <dl class="reasons">
+        <dt>The agent got it wrong</dt><dd>False positive, hallucinated, wrong severity, duplicate, not actionable.</dd>
+        <dt>The input was wrong</dt><dd>Missing context, wrong target, stale input.</dd>
+        <dt>A matter of taste</dt><dd>Style preference, out of scope, too minor.</dd>
+      </dl>
+      <p class="small">So a cut teaches the right lesson: a wrong input fixes the materials, not the agent.</p>
+    </div>
+    <div>
+      <div class="diff">
+        <div class="file"><span>agents/pr-review/direction.md</span><span>talked through, accepted</span></div>
+<pre><span>- Don't restate what the linter already says.</span>
+<span>- Money is integer cents end to end.</span>
+<span class="add">+ Flag a missing Idempotency-Key on any endpoint</span>
+<span class="add">+   that moves money, as a blocker, never a minor.</span>
+<span class="add">+ Never flag test-file naming or layout.</span>
+<span class="add why">+   cut three times as too minor</span></pre>
+      </div>
+      <p class="small">From the demo workshop. Direction is always written or accepted by a person; the machine never edits it on its own.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block reveal" id="principles" aria-labelledby="pr-h">
+  <div class="head">
+    <p class="label">Agentic engineering, the way we build it</p>
+    <h2 id="pr-h">Principles the code enforces.</h2>
+    <p class="dek">Each one is a rule in the source, not a slogan. The small print names the idea it comes from in the wider literature on building agents.</p>
+  </div>
+  <dl class="principles">
+    <div><dt>Nothing leaves until you decide.</dt><dd>Publishing sits behind four gates: your decision, an allow list, approval, and a read-back.</dd><dd class="aka">Human checkpoints</dd></div>
+    <div><dt>Posted means verified.</dt><dd>After it posts, Prentice reads the comment back. A mismatch says unverified, never done.</dd><dd class="aka">Ground truth from the environment</dd></div>
+    <div><dt>Your agent is a folder you own.</dt><dd>Four plain files. No hidden prompt in someone else's account.</dd><dd class="aka">Own your prompts</dd></div>
+    <div><dt>The machine proposes; you write the rules.</dt><dd>Only your click changes direction, and every change is a revision you can revert.</dd><dd class="aka">Own your context window</dd></div>
+    <div><dt>Small agents, one job each.</dt><dd>One agent, one job. A bench groups them by goal; nothing batches runs by time.</dd><dd class="aka">Small, focused agents</dd></div>
+    <div><dt>Sandboxed, with a ceiling.</dt><dd>Its own worktree, a deny list, a timeout, and a budget per run and per day.</dd><dd class="aka">Guardrails · sandboxed execution</dd></div>
+    <div><dt>Policy only tightens.</dt><dd>Deny lists add up, allow lists narrow, the lowest ceiling wins, and the Policy screen shows the trace.</dd><dd class="aka">Least privilege</dd></div>
+    <div><dt>Costs are read back, never guessed.</dt><dd>Spend comes from the CLI's own report. If nothing was measured you see a dash, never $0.00.</dd><dd class="aka">Transparency</dd></div>
+    <div><dt>Every judgment keeps its reason.</dt><dd>Decisions are append-only and an undo is one more record. Your reasons are the eval set.</dd><dd class="aka">Evaluation-driven iteration</dd></div>
+    <div><dt>One run is the unit.</dt><dd>Every run stores what it was asked, what it drafted, and what shipped, so any result can be traced.</dd><dd class="aka">Simple, composable patterns</dd></div>
+  </dl>
+</section>
+
+<section class="block reveal" id="architecture" aria-labelledby="hld-h">
+  <div class="head">
+    <p class="label">High-level design</p>
+    <h2 id="hld-h">One run, end to end.</h2>
+    <p class="dek">Prentice is not an agent. It schedules, fences, records and asks you. The work is done by the agent CLI you already pay for.</p>
+  </div>
+  <ol class="hld">
+    <li><h3>Agent folder</h3><p>prompt, direction, manifest, and the bench goal</p></li>
+    <li><h3>Schedule</h3><p>its own cron through a launchd tick, or Run now</p></li>
+    <li><h3>Prepare</h3><p>merge policy, check the day's ceiling, assemble the prompt</p></li>
+    <li><h3>Sandboxed run</h3><p>git worktree, deny list, timeout; Claude Code or Codex</p></li>
+    <li><h3>Draft + spend</h3><p>findings, events, and usage read back from the CLI</p></li>
+    <li class="you"><h3>Desk</h3><p>you keep, cut or send back, each with a reason</p></li>
+    <li><h3>Publish</h3><p>four gates, then post and read it back to verify</p></li>
+    <li><h3>Revise</h3><p>your judgments become direction you accept</p></li>
+    <li class="back"><p>↺ direction goes back into the agent folder, and the next run starts from there</p></li>
+  </ol>
+</section>
+
+<section class="block reveal" id="yours" aria-labelledby="y-h">
+  <div class="head">
+    <p class="label">Local-first</p>
+    <h2 id="y-h">Yours, on your Mac.</h2>
+  </div>
+  <div class="facts">
+    <dl>
+      <div><dt>Runs on</dt><dd>macOS 13 or later, Intel or Apple silicon. One app, a local Desk.</dd></div>
+      <div><dt>Does the work</dt><dd>Your <b>Claude Code</b> or <b>Codex</b> login. Prentice has no API key of its own; your subscription pays.</dd></div>
+      <div><dt>Dependencies</dt><dd><b>Zero.</b> Python's standard library, on purpose.</dd></div>
+      <div><dt>Leaves your Mac</dt><dd>What your agent CLI sends, an hourly version check against npm, and a no-payload network probe. No analytics, no account, no server.</dd></div>
+      <div><dt>A real cost</dt><dd>One PR review on Sonnet: <b class="num">$0.11</b>, 29 Sep 2026.</dd></div>
+    </dl>
+    <div>
+      <h3>Not yet, said plainly</h3>
+      <ul class="notyet">
+        <li><b>Network-off</b> withholds network tools; it is not a network jail.</li>
+        <li><b>Agents on a bench</b> work side by side. Handing work from one to the next comes later.</li>
+        <li><b>Proposed folds</b> come from a revise you start. Suggesting them unprompted comes later.</li>
+        <li><b>The app</b> is ad-hoc signed, not notarised, until the Developer ID lands.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="close reveal" aria-labelledby="c-h">
+  <p class="label">v0.1 · private beta</p>
+  <h2 id="c-h">Build the team. Then teach it.</h2>
+  <div class="ask">
+    <a class="btn" href="mailto:ashishjain608@gmail.com?subject=Prentice%20beta">Ask for the beta<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
+    <span>Tell me what your team should build. I'll send the app.</span>
+  </div>
+</section>
+</main>
+
+<footer>
+  <span>Built by <a class="link" href="/">Ashish Jain</a> in Bengaluru</span>
+  <a class="link" href="/projects/">Other projects</a>
+  <span class="push num">Updated 2026-10-01</span>
+</footer>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)');
+
+  // Reveal sections once as they arrive.
+  var rs = [].slice.call(document.querySelectorAll('.reveal'));
+  if (reduced.matches || !('IntersectionObserver' in window)) rs.forEach(function(s){ s.classList.add('in'); });
+  else {
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },
+      {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+    rs.forEach(function(s){ io.observe(s); });
+  }
+
+  // The demo: autoplay unless reduced motion; chapters follow currentTime and seek on click.
+  var v = document.getElementById('demo'), t = document.getElementById('toggle');
+  var label = document.getElementById('tlabel'), icon = document.getElementById('ticon');
+  var chapters = [].slice.call(document.querySelectorAll('#chapters button'));
+  function setState(playing){
+    label.textContent = playing ? 'Pause' : 'Play';
+    icon.setAttribute('d', playing ? 'M2 1h3v10H2zM7 1h3v10H7z' : 'M2 1l9 5-9 5z');
+    t.setAttribute('aria-pressed', String(!playing));
+  }
+  function play(){ var p = v.play(); if (p && p.catch) p.catch(function(){ setState(false); }); }
+  v.addEventListener('play', function(){ setState(true); });
+  v.addEventListener('pause', function(){ setState(false); });
+  t.addEventListener('click', function(){ v.paused ? play() : v.pause(); });
+  if (!reduced.matches) { v.preload = 'auto'; play(); } else setState(false);
+
+  chapters.forEach(function(b){
+    b.addEventListener('click', function(){ v.currentTime = +b.dataset.start + .05; play(); });
+  });
+  v.addEventListener('timeupdate', function(){
+    var now = v.currentTime;
+    chapters.forEach(function(b){
+      var s = +b.dataset.start, e = +b.dataset.end;
+      var p = now >= e ? 1 : now <= s ? 0 : (now - s) / (e - s);
+      b.style.setProperty('--p', p.toFixed(3));
+      b.setAttribute('aria-current', String(now >= s && now < e));
+    });
+  });
+})();
+</script>
+</body>
+</html>

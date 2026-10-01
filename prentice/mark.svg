@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" role="img" aria-labelledby="t">
+  <title id="t">Prentice</title>
+  <!-- The Hot End mark on light ground, hot state. Bloom ellipse adds outside glow
+       before the bevel group. Filled-outline with heat overlay. -->
+  <defs>
+    <clipPath id="pc"><path clip-rule="evenodd" d="M19.5 7.5H55A26.5 26.5 0 0 1 55 60.5H32.5V87H19.5ZM32.5 20.5H55A13.5 13.5 0 0 1 55 47.5H32.5Z"/></clipPath>
+
+    <filter id="b-bevel" filterUnits="userSpaceOnUse" x="-12" y="-12" width="124" height="124">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.7" result="hm"/>
+      <feSpecularLighting in="hm" surfaceScale="5.5" specularConstant=".95" specularExponent="52"
+                          lighting-color="#DCE6F5" result="sp">
+        <feDistantLight azimuth="228" elevation="55"/>
+      </feSpecularLighting>
+      <feComposite in="sp" in2="SourceAlpha" operator="in" result="spm"/>
+      <feComposite in="spm" in2="SourceGraphic" operator="arithmetic" k1="0" k2="1" k3="1" k4="0"/>
+    </filter>
+
+    <filter id="bl" filterUnits="userSpaceOnUse" x="-30" y="-30" width="160" height="160">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+
+    <linearGradient id="e-hot" gradientUnits="userSpaceOnUse" x1="22" y1="94" x2="78" y2="16">
+      <stop offset="0"   stop-color="#2C333B"/><stop offset=".12" stop-color="#6E6448"/>
+      <stop offset=".22" stop-color="#5C4530"/><stop offset=".32" stop-color="#3A4A63"/>
+      <stop offset=".42" stop-color="#3B3A3E"/><stop offset=".52" stop-color="#6E2A1E"/>
+      <stop offset=".64" stop-color="#C4471A"/><stop offset=".76" stop-color="#F5901F"/>
+      <stop offset=".88" stop-color="#FFC85E"/><stop offset="1" stop-color="#FFF3D6"/>
+    </linearGradient>
+
+    <radialGradient id="hh" gradientUnits="userSpaceOnUse" cx="70" cy="31" r="46">
+      <stop offset="0" stop-color="#FFF7E6"/>
+      <stop offset=".22" stop-color="#FFC64F" stop-opacity=".98"/>
+      <stop offset=".48" stop-color="#F2701C" stop-opacity=".92"/>
+      <stop offset=".76" stop-color="#C43C0A" stop-opacity=".48"/>
+      <stop offset="1" stop-color="#A02E06" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="71" cy="31" rx="18" ry="18" fill="#FF8A22" opacity=".55" filter="url(#bl)"/>
+  <g filter="url(#b-bevel)"><path fill-rule="evenodd" fill="url(#e-hot)" d="M19.5 7.5H55A26.5 26.5 0 0 1 55 60.5H32.5V87H19.5ZM32.5 20.5H55A13.5 13.5 0 0 1 55 47.5H32.5Z"/></g>
+  <g clip-path="url(#pc)"><path transform="translate(1.8,1.8)" fill="none" stroke="#080A0E"
+     stroke-width="3.2" opacity=".6" d="M19.5 7.5H55A26.5 26.5 0 0 1 55 60.5H32.5V87H19.5ZM32.5 20.5H55A13.5 13.5 0 0 1 55 47.5H32.5Z"/></g>
+  <g clip-path="url(#pc)"><rect width="100" height="100" fill="url(#hh)"/></g>
+</svg>
