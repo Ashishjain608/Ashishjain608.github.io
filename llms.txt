@@ -28,7 +28,7 @@ Updated 2026-10-01.
 - unicorn-radar (live, https://qriousguy.com/unicorn-radar-site/): 7,852 recently funded AI companies, LLM-classified from six free data sources (Wayback Machine, SEC Form D, TechCrunch and others). 2,764 hiring for AI now, 1,132 with an Indian entity. Zero paid APIs. Snapshot 2026-08-25.
 - agent-experience (live, https://qriousguy.com/agent-experience/): A field guide for designing codebases AI coding agents can actually work in. Six practices that survived adversarial fact-checking, 16 popular claims that didn't, and a case study mining 380 of my own Claude Code sessions.
 - ai-events-radar (live, https://qriousguy.com/ai-events-radar/): A field guide to Bengaluru's AI and agent events scene.
-- Prentice (private beta, https://qriousguy.com/prentice/): A software factory for all, on your Mac. Assemble a team of agents around one goal; they work in a sandbox, their drafts wait on your Desk, and every keep, cut and reason you give becomes the direction they follow next time.
+- Prentice (private beta, https://qriousguy.com/prentice/): A software factory that learns from you, on your Mac. Assemble a team of agents around one goal; they work in a sandbox, their drafts wait on your Desk, and every keep, cut and reason you give becomes the direction they follow next time.
 - Notes & Goals (live, https://qriousguy.com/notes-goals-app/): A calm, local-first macOS app that unifies tasks, notes, and goals as plain files in a folder you choose. No cloud, no accounts.
 
 ## Writing

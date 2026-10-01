@@ -149,7 +149,7 @@ CHAPTERS = [
         rows=[
             ("Notes &amp; Goals", "Live", "A calm, local-first macOS app. Tasks, notes and goals as plain files.", "/projects/#notes-goals"),
             ("agent-experience", "Live", "Six practices that survived fact-checking, 16 claims that did not.", "/projects/#agent-experience"),
-            ("Prentice", "Private beta", "A software factory for all: build a team of agents, then teach it.", "/prentice/"),
+            ("Prentice", "Private beta", "A software factory that learns from you.", "/prentice/"),
             ("ai-events-radar", "Live", "A field guide to Bengaluru's AI and agent events scene.", "/projects/#ai-events-radar"),
         ],
         more=("All projects", "/projects/"),
@@ -202,7 +202,7 @@ PROJECTS = [
     Project(
         slug="prentice", name="Prentice", tag="Private beta",
         rows=[
-            ("What", "A software factory for all, on your own Mac: build a team of agents, then teach it."),
+            ("What", "A software factory that learns from you, on your own Mac: give a team of agents one goal, judge their work, and they learn from your reasons."),
             ("Idea", "An agent is a folder you own: a prompt, the direction you have folded in, and a manifest. Nothing hidden in someone else's account."),
             ("How", "Prentice schedules it, sandboxes it, records what each run did and what it cost, and gives you a <b>Desk</b> to judge its work. Six screens: Desk · Review · Agents · History · Spend · Policy."),
         ],
