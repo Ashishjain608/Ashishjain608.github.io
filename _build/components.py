@@ -143,7 +143,7 @@ def social_row(css_class: str = "linkrow") -> str:
 
 def footer(*, updated: str, lead: str = "") -> str:
     big = f'<p class="big">{lead}</p>' if lead else ""
-    return f"""<footer class="reveal">
+    return f"""<footer class="reveal" id="contact">
   <div>
     {big}
     {social_row()}
