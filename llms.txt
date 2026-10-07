@@ -30,6 +30,7 @@ Updated 2026-10-01.
 - ai-events-radar (live, https://qriousguy.com/ai-events-radar/): A field guide to Bengaluru's AI and agent events scene.
 - Prentice (private beta, https://qriousguy.com/prentice/): A software factory that learns from you, on your Mac. Assemble a team of agents around one goal; they work in a sandbox, their drafts wait on your Desk, and every keep, cut and reason you give becomes the direction they follow next time.
 - Notes & Goals (live, https://qriousguy.com/notes-goals-app/): A calm, local-first macOS app that unifies tasks, notes, and goals as plain files in a folder you choose. No cloud, no accounts.
+- WriteBetter (live, https://qriousguy.com/write-better/): A free, open-source macOS menu-bar app. Press ⇧⌘Space on any text and a floating panel streams a rewrite from Claude, GPT, Gemini, a local model, or Apple's on-device model. Claude Code and Codex CLI subscriptions work with no API key. Your own key, no account, no server.
 
 ## Writing
 - Six free data sources, one LLM, and 3,872 AI companies (2026-07-11): https://qriousguy.com/posts/six-free-sources-one-llm.html

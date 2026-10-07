@@ -148,6 +148,7 @@ CHAPTERS = [
         summary='<b>Tools I ship in public.</b> Full write-ups on the <a class="rc" href="/projects/">projects page</a>.',
         rows=[
             ("Notes &amp; Goals", "Live", "A calm, local-first macOS app. Tasks, notes and goals as plain files.", "/projects/#notes-goals"),
+            ("WriteBetter", "Live", "Press ⇧⌘Space on any text and a model rewrites it in place. macOS menu bar.", "/projects/#write-better"),
             ("agent-experience", "Live", "Six practices that survived fact-checking, 16 claims that did not.", "/projects/#agent-experience"),
             ("Prentice", "Private beta", "A software factory that learns from you.", "/prentice/"),
             ("ai-events-radar", "Live", "A field guide to Bengaluru's AI and agent events scene.", "/projects/#ai-events-radar"),
@@ -187,6 +188,17 @@ PROJECTS = [
         links=[("Project page", "https://qriousguy.com/notes-goals-app/", "arrow-up-right"),
                ("GitHub", "https://github.com/Ashishjain608/notes-goals-app", None)],
         stamp="first commit 2026-06-07 · public 2026-09-14",
+    ),
+    Project(
+        slug="write-better", name="WriteBetter", tag="Live",
+        rows=[
+            ("What", "A macOS menu-bar app: copy or select text, press <b>⇧⌘Space</b>, and a floating panel rewrites it. Copy the result or replace the original in place."),
+            ("Why", "Rewriting a paragraph shouldn't mean a trip to a chat tab and back."),
+            ("How", "Native Swift, no server, no account. Bring a Claude, GPT or Gemini key, point it at a local model, use Apple's on-device model, or run it through your Claude Code or Codex subscription."),
+        ],
+        links=[("Project page", "https://qriousguy.com/write-better/", "arrow-up-right"),
+               ("GitHub", "https://github.com/Ashishjain608/write-better", None)],
+        stamp="first commit 2025-11-30 · public 2026-10-07",
     ),
     Project(
         slug="agent-experience", name="agent-experience", tag="Live",
