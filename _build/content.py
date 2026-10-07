@@ -199,6 +199,7 @@ PROJECTS = [
         links=[("Project page", "https://qriousguy.com/write-better/", "arrow-up-right"),
                ("GitHub", "https://github.com/Ashishjain608/write-better", None)],
         stamp="first commit 2025-11-30 · public 2026-10-07",
+        thumb=("https://qriousguy.com/write-better/", "/assets/write-better-dark.webp", "WriteBetter rewriting a rough email draft in TextEdit", 720, 526),
     ),
     Project(
         slug="agent-experience", name="agent-experience", tag="Live",
